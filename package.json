@@ -1,0 +1,28 @@
+{
+  "name": "poke.me",
+  "version": "1.0.0",
+  "description": "Temos que pegar, temos que pegar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raphaklaus/poke.me.git"
+  },
+  "author": "Raphael D. Pinheiro (Klaus)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raphaklaus/poke.me/issues"
+  },
+  "homepage": "https://github.com/raphaklaus/poke.me#readme",
+  "dependencies": {
+    "apicache": "^0.8.4",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.7",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
+  }
+}
