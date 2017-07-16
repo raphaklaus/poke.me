@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+  p #{message}
+  p Pokemons available to buy!!!
+  each pokemon in data
+    p
+      = pokemon.name
+    p
+      = pokemon.description
+    p
+      = pokemon.number
+    p
+      = pokemon.price

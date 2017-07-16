@@ -1,0 +1,11 @@
+extends layout.pug
+
+block content
+  p Pokémon form!!
+
+  form(method="POST" action="/pokemons")
+    input(name="name" type="text" required="true")
+    input(name="number" type="number" required="true")
+    input(name="description" type="text" required="true")
+    input(name="price" type="number" required="true")
+    button(type="submit") Create
