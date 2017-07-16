@@ -1,0 +1,25 @@
+version: '3'
+services:
+  backend:
+    command: bash -c "pm2 start --no-daemon server.js --watch"
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "80:80"
+    environment:
+      - PORT=80
+      - MONGO_URL=mongodb://database:27017/pokeme
+      - COOKIE_SECRET=071843c52fca99763645e1987f00d8e3
+      - PASSWORD_SECRET=f9d8e14a14d5cd3d05c972ad019c2bd7
+      - API_ONLY=false
+    tty: true
+  database:
+    image: mongo
+    ports:
+      - "27017:27017"
+  e2e-tester:
+    image: webnicer/protractor-headless
+    volumes:
+      - .:/protractor
+    privileged: true
