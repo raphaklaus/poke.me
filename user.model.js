@@ -3,10 +3,10 @@ const crypto = require('crypto'),
   Schema = mongoose.Schema;
 
 const User = new Schema({
-  username: [{
+  username: {
     type: String,
     required: true
-  }],
+  },
   password: {
     type: String,
     required: true
@@ -16,8 +16,8 @@ const User = new Schema({
 });
 
 User.pre('save', function(next) {
-  this.password = crypto.createHmac('sha256', 'qwekqwoekqwoeqkwoekqwe')
-  .update('this.password')
+  this.password = crypto.createHmac('sha256', process.env.PASSWORD_SECRET)
+  .update(this.password)
   .digest('hex');
   next();
 });
