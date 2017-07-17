@@ -4,6 +4,7 @@ const mongoose = require('mongoose'),
 const Cart = new Schema({
   pokemons: [{
     type: mongoose.Schema.Types.ObjectId,
+    ref: 'Pokemon',
     required: true
   }],
   total: {
