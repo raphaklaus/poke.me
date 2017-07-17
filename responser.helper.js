@@ -21,7 +21,9 @@ const clean = (data) => {
 };
 
 const redirect = (req, res, router, message) => {
-  req.flash('message', message);
+  if (message)
+    req.flash('message', message);
+
   res.redirect(`/${router}`);
 };
 
