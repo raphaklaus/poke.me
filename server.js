@@ -1,3 +1,4 @@
+
 const express = require('express'),
   app = express(),
   request = require('request-promise'),
@@ -13,6 +14,8 @@ mongoose.Promise = Promise;
 mongoose.connect(process.env.MONGO_URL, { useMongoClient: true });
 
 response.init(app);
+
+app.use(express.static(`${__dirname}/pages`));
 
 const store = new MongoStore({ url: process.env.MONGO_URL,
   ttl: 60 * 60 * 24 * 30, // 30 days
@@ -33,13 +36,14 @@ app.use(session({
 }));
 
 app.get('/', (req, res) => {
-  // if (req.session.userId)
-  // todo: redirect to pokemons
-  // else... render the main page asking to login or register
-    // response.send(req, res, null, '')
+  if (req.session.userId)
+    response.send(req, res, null, null, 'pokemons');
+  else
+    response.send(req, res, null, 'main');
 });
 
 require('./pokemon.router.js')(app, response);
+require('./cart.router.js')(app, response);
 require('./auth.router.js')(app, response);
 
 // Error handling
