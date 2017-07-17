@@ -4,7 +4,9 @@ const mongoose = require('mongoose'),
 const Pokemon = new Schema({
   number: {
     type: Number,
-    required: true
+    required: true,
+    min: 1,
+    max: 151
   },
   name: {
     type: String,
@@ -16,7 +18,8 @@ const Pokemon = new Schema({
   },
   price: {
     type: Number,
-    required: true
+    required: true,
+    min: 1
   }
 }, {
   timestamps: true
