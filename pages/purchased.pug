@@ -1,9 +1,7 @@
 extends layout.pug
 
 block content
-  p #{message}
-  a(href="/pokemons/new") Create your own Pokemon!
-  p Pokemons available to buy!!!
+  p Your pokemons
   each pokemon in data
     p
       = pokemon.name
@@ -13,4 +11,3 @@ block content
       = pokemon.number
     p
       = pokemon.price
-    button(onclick="order(pokemon._id)") Order
