@@ -2,7 +2,9 @@ const Pokemon = require('./pokemon.model.js');
 
 module.exports = (app, response) => {
   app.get('/pokemons', (req, res, next) => {
-    Pokemon.find().then(models => response.send(req, res, models, 'pokemons'))
+    Pokemon.find().lean().then(models => {
+      response.send(req, res, models, 'pokemons', null, req.flash('message'));
+    })
     .catch(error => next(error));
   });
 
