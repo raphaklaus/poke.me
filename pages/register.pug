@@ -4,6 +4,11 @@ block content
   h2 Register
 
   form(method="POST" action="/register")
-    input(name="username" type="text")
-    input(name="password" type="password")
-    button(type="submit") Register
+    div(class="form-group")
+      label(for=username) Username
+      input(name="username" type="text" class="form-control")
+    div(class="form-group")
+      label(for=password) Password
+      input(name="password" type="password" class="form-control")
+    div(class="form-group")
+      button(type="submit" class="btn btn-primary") Register
