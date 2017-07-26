@@ -22,4 +22,6 @@ User.pre('save', function(next) {
   next();
 });
 
+User.index({ username: true }, { unique: true });
+
 module.exports = mongoose.model('User', User);
