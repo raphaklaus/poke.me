@@ -1,7 +1,8 @@
 version: '3'
 services:
   backend:
-    command: bash -c "pm2 start --no-daemon server.js --watch"
+    # Recommended command for dev env. In case of production, just comment the line below
+    command: bash -c "webpack --watch & pm2 start --no-daemon server.js --watch"
     build: .
     volumes:
       - .:/usr/src/app
@@ -18,8 +19,3 @@ services:
     image: mongo
     ports:
       - "27017:27017"
-  e2e-tester:
-    image: webnicer/protractor-headless
-    volumes:
-      - .:/protractor
-    privileged: true

@@ -1,6 +1,7 @@
 FROM node:boron
 
 RUN npm install pm2 -g
+RUN npm install webpack -g
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -11,4 +12,4 @@ RUN npm install
 COPY . /usr/src/app
 
 EXPOSE 3000
-CMD [ "node", "server.js" ]
+CMD [ "npm", "start" ]
