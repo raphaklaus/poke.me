@@ -10,7 +10,6 @@ module.exports = (app, response) => {
     let password = crypto.createHmac('sha256', process.env.PASSWORD_SECRET)
     .update(req.body.password)
     .digest('hex');
-    console.log('password', password);
     User.findOne({ username: req.body.username, password: password }).then(model => {
       if (model) {
         req.session.userId = model._id;
