@@ -1,15 +1,17 @@
 const Cart = require('./cart.model.js');
 
 module.exports = (app, response) => {
-  app.get('/carts', (req, res, next) => {
-    Cart.find().then(models => {
-      response.send(req, res, models, 'purchased');
-    }).catch(error => next(error));
-  });
+  app.post('/carts', (req, res, next) => {
+    let cart = {
+      pokemons: req.body.cart.pokemons,
+      total: req.body.cart.pokemons
+        .reduce((accumulator, current) => accumulator + current.price, 0),
+      user: req.session.userId
+    };
 
-  app.post('/carts', (req, res) => {
-    new Cart(req.body);
-    // todo: persist pokemon into the database and render back to pokemon list,
-    // with a message telling the pokemon was created
+    new Cart(cart).save().then(() => {
+      response.send(req, res, null, null, 'purchased', 'Congratulations! Your purchase was' +
+      'completed! Here are all Pokemons already bought');
+    }).catch(error => next(error));
   });
 };
