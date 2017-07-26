@@ -4,7 +4,6 @@ let cart = {
 
 const addToCart = (pokemon) => {
   cart.pokemons.push(pokemon);
-  console.log(pokemon);
   alert('Pokemon add to cart!');
 };
 
