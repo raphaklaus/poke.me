@@ -8,10 +8,7 @@
         "jasmine": true
     },
     "globals": {
-        "io": true,
-        "angular": true,
-        "Croppie": true,
-        "FB": true
+        "axios": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
