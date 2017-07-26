@@ -3,21 +3,14 @@ const bodyParser = require('body-parser'),
   path = require('path');
 
 const init = (app) => {
-  // if (process.env.API_ONLY) {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
-  // } else {
-  app.set('views', path.join(__dirname, 'pages'));
-  app.set('view engine', 'pug');
-  app.use(flash());
-  // }
-};
 
-const clean = (data) => {
-  // Function to clean sensitive data
-  // if (data instanceof Object) {
-  //
-  // }
+  if (process.env.API_ONLY === 'false') {
+    app.set('views', path.join(__dirname, 'pages'));
+    app.set('view engine', 'pug');
+    app.use(flash());
+  }
 };
 
 const redirect = (req, res, router, message) => {
@@ -35,8 +28,10 @@ const send = (req, res, data, page, redirectTo, message) => {
       res.json({ message: 'This route does not support API calls' });
   } else if (redirectTo)
     redirect(req, res, redirectTo, message);
-  else
-    res.render(`${page}.pug`, { data: data, message: req.flash('message') });
+  else {
+    res.render(`${page}.pug`, { data: data, message: message,
+      appScriptBundle: 'app', vendorScriptBundle: 'vendor', styleBundle: 'bundle' });
+  }
 };
 
 module.exports = { init, send };
