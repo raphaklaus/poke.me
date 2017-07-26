@@ -1,16 +1,28 @@
 extends layout.pug
 
 block content
-  p #{message}
-  a(href="/pokemons/new") Create your own Pokemon!
-  p Pokemons available to buy!!!
-  each pokemon in data
-    p
-      = pokemon.name
-    p
-      = pokemon.description
-    p
-      = pokemon.number
-    p
-      = pokemon.price
-    button(onclick="order(pokemon._id)") Order
+  h2 Pokemons available to buy
+  a(href="/pokemons/new" class="btn btn-default")
+    i(class="glyphicon glyphicon-plus")
+    | Create your own Pokemon!
+  table(class="table")
+    thead
+      tr
+        th #{'#'}
+        th Name
+        th Description
+        th Price
+    tbody
+      each pokemon in data
+        tr
+          td
+            = pokemon.number
+          td
+            = pokemon.name
+          td
+            = pokemon.description
+          td
+            = pokemon.price
+          td
+            button(onclick=`addToCart(${JSON.stringify(pokemon)})`) Add to cart
+  button(onclick=`order()` class="btn btn-primary") Check out!!

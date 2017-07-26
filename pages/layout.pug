@@ -1,8 +1,11 @@
 doctype html
 head
   title="Poke.me"
+  link(href=`/${styleBundle}.css` rel="stylesheet" type="text/css")
 body
-  p This is layout
-  block content
-  script(src="../node_modules/axios/dist/axios.js") // todo: use webpack here
-  script(src="/js/ordering.js")
+  if message && message.length > 0
+    div(class="alert alert-success" role="alert") #{message}
+  section(class="container")
+    block content
+  script(src=`/${appScriptBundle}.js`)
+  script(src=`/${vendorScriptBundle}.js`)

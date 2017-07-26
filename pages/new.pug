@@ -1,11 +1,19 @@
 extends layout.pug
 
 block content
-  p Pokémon form!!
+  h2 Create a Pokemon
 
   form(method="POST" action="/pokemons")
-    input(name="name" type="text" required="true")
-    input(name="number" type="number" required="true" min="1" max="151")
-    input(name="description" type="text" required="true")
-    input(name="price" type="number" required="true" min="1")
-    button(type="submit") Create
+    div(class="form-group")
+      label(for=name) Name
+      input(name="name" class="form-control" type="text" required="true")
+    div(class="form-group")
+      label(for=description) Description
+      input(name="description" class="form-control" type="text" required="true")
+    div(class="form-group")
+      label(for=number) Number
+      input(name="number" type="number" class="form-control" required="true" min="1" max="151")
+    div(class="form-group")
+      label(for=price) Price
+      input(name="price" type="number" class="form-control" required="true" min="1")
+    button(type="submit" class="btn btn-primary") Create
