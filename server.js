@@ -1,8 +1,6 @@
 
 const express = require('express'),
   app = express(),
-  // apicache = require('apicache'),
-  // cache = apicache.middleware,
   Promise = require('bluebird'),
   session = require('express-session'),
   MongoStore = require('connect-mongo')(session),
