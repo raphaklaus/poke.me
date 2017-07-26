@@ -2,10 +2,11 @@ version: '3'
 services:
   backend:
     # Recommended command for dev env. In case of production, just comment the line below
-    command: bash -c "webpack --watch & pm2 start --no-daemon server.js --watch"
+    #command: bash -c "webpack --watch & pm2 start --no-daemon server.js --watch"
     build: .
-    volumes:
-      - .:/usr/src/app
+    # Just for dev use since Dockerfile already copies it to container
+    #volumes:
+      #- .:/usr/src/app
     ports:
       - "80:80"
     environment:
@@ -17,5 +18,6 @@ services:
     tty: true
   database:
     image: mongo
-    ports:
-      - "27017:27017"
+    # This biding is only for dev env, comment if production
+    #ports:
+    #  - "27017:27017"
